@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project Test">
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="."/>
+    <property name="dir.jarfile" value="${dir.buildfile}"/>
+	
+	<target name="build_class">
+		<mkdir dir="${dir.jarfile}/bin"/>
+		<javac target="1.6" srcdir="." destdir="${dir.jarfile}/bin" debug="on" fork="true">
+		</javac>
+	</target>
+	
+    <target name="create_run_jar" depends="build_class">
+        <jar destfile="${dir.jarfile}/hello.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="Hello"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="${dir.workspace}/bin"/>
+        </jar>
+    </target>
+</project>
