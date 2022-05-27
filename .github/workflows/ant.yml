@@ -23,3 +23,5 @@ jobs:
         distribution: 'temurin'
     - name: Build with Ant
       run: ant -noinput -buildfile build.xml
+    - name: run with java
+      run: java -cp ./hello.jar Hello
